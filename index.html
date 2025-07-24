@@ -7,7 +7,45 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <div class="flex" id="main">
+        <div id="info">
+            <h3>Currency Converter</h3>
+            <p>Check live rates, set rate alerts, receive notifications and more</p>
+        </div>
+        <div class="flex" id="content">
+            <div class="cards" id="from_card">
+                <h5>Amount</h5>
+                <div class="flex">
+                    <span id="from_country">
+                    <img id="from_img" src="" alt="">
+                    <select name="from" id="">
+                    </select>
+                    </span>
+                    <span id="amount"> 
+                    </span>
+                </div>
+            </div>
+            <div>
+                <img id="exchange" src="change-position.png" alt="">
+            </div>
+            <div class="cards" id="to_card">
+                <h5>Converted amount</h5>
+                <div class="flex">
+                    <span id="to_country">
+                    <img  id="to_image" src="" alt="">
+                    <select name="to" id="">
+                    </select>
+                    </span>
+                    <span id="converted_amount">
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div id="rate_container">
+            <p>Indicative Exchange Rate</p>
+            <div id="rate"></div>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
