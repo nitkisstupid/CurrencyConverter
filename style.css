@@ -4,12 +4,24 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+select{
+    height: 30px;
+    padding: 5px;
+    border-radius: 6px;
+    font-size: medium;
+}
+
+option{
+    font-size: medium;
+}
+
 h5{
     font-weight: 400;
+    font-size: medium;
 }
 p{
     color: grey;
-    font-size: small;
+    font-size: medium;
 }
 .flex{
     display: flex;
@@ -20,7 +32,7 @@ p{
     width: 30vw;
     flex-direction: column;
     background-color: aliceblue;
-    min-height: 30vh;
+    min-height: 40vh;
     margin: auto;
     margin-top: 25vh;
     padding: 10px;
@@ -59,4 +71,25 @@ p{
 }
 #rate{
     font-weight: bold;
+}
+
+#amount,#converted_amount{
+    padding: 5px;
+    font-size: large;
+    border: none;
+    width: 100px;
+    height: 30px;
+    background-color: rgba(192, 186, 186, 0.542);
+}
+
+.space{
+    justify-content: space-between;
+    padding: 5px;
+    align-items:center;
+}
+
+#from_country,#to_country{
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
