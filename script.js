@@ -8,6 +8,8 @@ const amount = document.querySelector("#amount");
 const converted_amount = document.querySelector("#converted_amount");
 
 let country_name = {};
+
+// populating the options
 async function option_addition(){
     country_name = await fetch("https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@2025.7.25/v1/currencies.json");
     country_name = await country_name.json();
@@ -40,19 +42,28 @@ async function option_addition(){
 }
 option_addition();
 
+//setting corresponding flag for each option
 function changeflag(element){
     let img_code = countryList[element.value];
     element.previousElementSibling.src = `https://flagsapi.com/${img_code}/flat/64.png`
 }
 
-amount.addEventListener("input" , async(event) => {
-    const value = event.target.value;
+//dynamic amount conversion
+async function dynamic_conversion(event){
+    const value = amount.value;
     const from_country = from.value.toLowerCase();
     const to_country = to.value.toLowerCase();
     let exchange_rate = await fetch(`${link}${from_country}.json`);
     exchange_rate = await exchange_rate.json();
     exchange_rate = exchange_rate[from_country][to_country];
-    console.log(exchange_rate);
-    
     converted_amount.value = (value * exchange_rate).toFixed(2);
+}
+amount.addEventListener("input" , (event) => {
+    dynamic_conversion(event);
+})
+from.addEventListener("change" ,(event)=>{
+    dynamic_conversion(event);
+})
+to.addEventListener("change" ,(event)=>{
+    dynamic_conversion(event);
 })
