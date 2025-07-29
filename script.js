@@ -79,18 +79,17 @@ to.addEventListener("change" ,()=>{
     dynamic_conversion();
 })
 
-//switch functionality
-exchange.addEventListener("click",(event) => {
+//exchange functionality
+exchange.addEventListener("click",() => {
     //changing option value
     let temp = to.value;
     to.value = from.value;
     from.value = temp;
 
     //changing flag
-    let img_code = countryList[from.value];
-    from_img.src = `https://flagsapi.com/${img_code}/flat/64.png`
-    img_code = countryList[to.value];
-    to_img.src = `https://flagsapi.com/${img_code}/flat/64.png`
+
+    from_img.src = `https://flagsapi.com/${countryList[from.value]}/flat/64.png`;
+    to_img.src = `https://flagsapi.com/${countryList[to.value]}/flat/64.png`;
     
     //changing rate value
     dynamic_conversion();
