@@ -7,6 +7,12 @@ const to = document.querySelector("#to");
 const amount = document.querySelector("#amount");
 const converted_amount = document.querySelector("#converted_amount");
 
+const rate = document.querySelector("#rate");
+const exchange = document.querySelector("#exchange");
+
+const from_img = document.querySelector("#from_img");
+const to_img = document.querySelector("#to_img");
+
 let country_name = {};
 
 // populating the options
@@ -49,21 +55,43 @@ function changeflag(element){
 }
 
 //dynamic amount conversion
-async function dynamic_conversion(event){
+async function dynamic_conversion(){
+    if(amount.value == ""){
+        amount.value = 1;
+    }
     const value = amount.value;
     const from_country = from.value.toLowerCase();
     const to_country = to.value.toLowerCase();
     let exchange_rate = await fetch(`${link}${from_country}.json`);
     exchange_rate = await exchange_rate.json();
     exchange_rate = exchange_rate[from_country][to_country];
-    converted_amount.value = (value * exchange_rate).toFixed(2);
+    converted_amount.value = (value * exchange_rate).toFixed(4);
+
+    rate.textContent = `1 ${from.value} = ${exchange_rate.toFixed(4)} ${to.value}`
 }
-amount.addEventListener("input" , (event) => {
-    dynamic_conversion(event);
+amount.addEventListener("input" , () => {
+    dynamic_conversion();
 })
-from.addEventListener("change" ,(event)=>{
-    dynamic_conversion(event);
+from.addEventListener("change" ,()=>{
+    dynamic_conversion();
 })
-to.addEventListener("change" ,(event)=>{
-    dynamic_conversion(event);
+to.addEventListener("change" ,()=>{
+    dynamic_conversion();
+})
+
+//switch functionality
+exchange.addEventListener("click",(event) => {
+    //changing option value
+    let temp = to.value;
+    to.value = from.value;
+    from.value = temp;
+
+    //changing flag
+    let img_code = countryList[from.value];
+    from_img.src = `https://flagsapi.com/${img_code}/flat/64.png`
+    img_code = countryList[to.value];
+    to_img.src = `https://flagsapi.com/${img_code}/flat/64.png`
+    
+    //changing rate value
+    dynamic_conversion();
 })
